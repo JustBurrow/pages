@@ -1,16 +1,8 @@
 package kr.lul.pages.spring.boot14.v1;
 
-import java.time.Instant;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-import javax.annotation.PostConstruct;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,32 +15,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/foos")
 public class FooController {
-  private AtomicInteger        id;
-  private Random               rand;
-  private Map<Integer, FooDto> fooBox;
+  @Autowired
+  private FooService fooService;
 
   /**
    * @author Just Burrow
-   * @since 2016. 10. 1.
+   * @since 2016. 10. 2.
    */
-  @PostConstruct
-  private void postConstruct() {
-    this.id = new AtomicInteger(1);
-    this.rand = new Random();
-    this.fooBox = new LinkedHashMap<>();
-  }
+  @GetMapping("/create")
+  public FooResp create() {
+    FooDto foo = this.fooService.create();
 
-  /**
-   * @return
-   * @author Just Burrow
-   * @since 2016. 10. 1.
-   */
-  private FooDto randomDto() {
-    FooDto dto = new FooDto(this.id.getAndIncrement(), Instant.now());
-    synchronized (this.fooBox) {
-      this.fooBox.put(dto.getId(), dto);
-    }
-    return dto;
+    return new FooResp(foo);
   }
 
   /**
@@ -58,8 +36,7 @@ public class FooController {
    */
   @GetMapping
   public FooListResp index() {
-    int cnt = this.rand.nextInt(10);
-    List<FooDto> list = IntStream.range(0, cnt).mapToObj(i -> this.randomDto()).collect(Collectors.toList());
+    List<FooDto> list = this.fooService.list(10);
     return new FooListResp(list);
   }
 
@@ -71,7 +48,7 @@ public class FooController {
    */
   @GetMapping("/{id}")
   public FooResp foo(@PathVariable("id") int id) {
-    FooDto dto = this.randomDto();
+    FooDto dto = this.fooService.read(id);
     return new FooResp(dto);
   }
 }
