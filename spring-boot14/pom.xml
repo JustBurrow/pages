@@ -40,5 +40,6 @@
   </dependencyManagement>
   <modules>
     <module>spring-boot14-v1</module>
+    <module>spring-boot14-v2</module>
   </modules>
 </project>
