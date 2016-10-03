@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
+import kr.lul.pages.spring.boot14.v2.domain.Foo;
 import kr.lul.pages.spring.boot14.v2.jpa.converter.InstantBigintConverter;
 
 /**
@@ -19,7 +20,7 @@ import kr.lul.pages.spring.boot14.v2.jpa.converter.InstantBigintConverter;
  */
 @Entity
 @Table(name = "foo")
-public class Foo {
+public class FooEntity implements Foo {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id", nullable = false, insertable = false, updatable = false)
@@ -28,7 +29,7 @@ public class Foo {
   @Convert(converter = InstantBigintConverter.class)
   private Instant create;
 
-  public Foo() {
+  public FooEntity() {
   }
 
   @PrePersist
@@ -36,10 +37,22 @@ public class Foo {
     this.create = Instant.now();
   }
 
+  /*
+   * (non-Javadoc)
+   * @author Just Burrow
+   * @since 2016. 10. 3.
+   */
+  @Override
   public int getId() {
     return this.id;
   }
 
+  /*
+   * (non-Javadoc)
+   * @author Just Burrow
+   * @since 2016. 10. 3.
+   */
+  @Override
   public Instant getCreate() {
     return this.create;
   }

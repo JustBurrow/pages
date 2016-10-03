@@ -1,15 +1,9 @@
 package kr.lul.pages.spring.boot14.v2.rest.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import kr.lul.pages.spring.boot14.v2.business.dto.FooDto;
-import kr.lul.pages.spring.boot14.v2.business.service.FooService;
 import kr.lul.pages.spring.boot14.v2.rest.resp.FooListResp;
 import kr.lul.pages.spring.boot14.v2.rest.resp.FooResp;
 
@@ -17,22 +11,15 @@ import kr.lul.pages.spring.boot14.v2.rest.resp.FooResp;
  * @author Just Burrow
  * @since 2016. 10. 3.
  */
-@RestController
 @RequestMapping("/foos")
-public class FooController {
-  @Autowired
-  private FooService fooService;
-
+public interface FooController {
   /**
+   * @return
    * @author Just Burrow
    * @since 2016. 10. 3.
    */
   @GetMapping("/create")
-  public FooResp create() {
-    FooDto foo = this.fooService.create();
-
-    return new FooResp(foo);
-  }
+  public FooResp create();
 
   /**
    * @return
@@ -40,10 +27,7 @@ public class FooController {
    * @since 2016. 10. 3.
    */
   @GetMapping
-  public FooListResp index() {
-    List<FooDto> list = this.fooService.list(10);
-    return new FooListResp(list);
-  }
+  public FooListResp index();
 
   /**
    * @param id
@@ -52,8 +36,5 @@ public class FooController {
    * @since 2016. 10. 3.
    */
   @GetMapping("/{id}")
-  public FooResp foo(@PathVariable("id") int id) {
-    FooDto dto = this.fooService.read(id);
-    return new FooResp(dto);
-  }
+  public FooResp foo(@PathVariable("id") int id);
 }
