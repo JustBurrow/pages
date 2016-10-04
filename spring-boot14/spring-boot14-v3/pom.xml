@@ -1,0 +1,17 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>kr.lul.pages</groupId>
+    <artifactId>spring-boot14</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>spring-boot14-v3</artifactId>
+  <packaging>pom</packaging>
+  <modules>
+    <module>spring-boot14-v3-domain</module>
+    <module>spring-boot14-v3-jpa</module>
+    <module>spring-boot14-v3-business</module>
+    <module>spring-boot14-v3-rest</module>
+  </modules>
+</project>
