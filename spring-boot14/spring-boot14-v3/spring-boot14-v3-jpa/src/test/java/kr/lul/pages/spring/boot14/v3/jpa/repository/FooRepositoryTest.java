@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -16,6 +17,7 @@ import kr.lul.pages.spring.boot14.v3.jpa.entity.FooEntity;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TestConfig.class)
+@DataJpaTest
 public class FooRepositoryTest {
   @Autowired
   private FooRepository fooRepository;
