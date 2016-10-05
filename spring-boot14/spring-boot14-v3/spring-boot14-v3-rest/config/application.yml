@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/springboot14v3
+    username: test
+    password: testuser
+logging:
+  level:
+    root: warn
+    org.hibernate.SQL: trace

@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    tomcat:
+      test-while-idle: true
+      validation-query: 'SELECT 1'
+  jpa:
+    open-in-view: false
+    generate-ddl: false
+    show-sql: false
+    database: mysql
