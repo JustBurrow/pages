@@ -14,8 +14,8 @@
   </div>
   <footer>
     <script type="text/x-template" id="tpl-component-item">
-      <li>
-        <p :id="comp.id">{{ msg }}</p>
+      <li v-bind:id="comp.id">
+        <p>{{comp.text}}</p>
       </li>
     </script>
     <script type="application/javascript">
