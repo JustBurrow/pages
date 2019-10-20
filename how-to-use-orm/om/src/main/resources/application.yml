@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost/how-to-use-orm?connectionCollation=utf8mb4_unicode_520_ci&allowPublicKeyRetrieval=true&useSSL=false
+    username: local
+    password: 'r))jK=HtmT;Xd4bfm*=oLy+m37o6a62.7agvHaNLg*AX4AT8H'
+
+mybatis:
+  type-aliases-package: kr.lul.pages.how.to.use.orm.om.model
+
+logging:
+  pattern:
+    console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} - %clr(%p) %clr(---){faint} %clr([%t]){faint} %clr(%logger#%M [L.%L]){cyan} %clr(:){faint} %m%n%wEx'
+  level:
+    root: warn
+    kr.lul.pages.how.to.use.orm:  trace
