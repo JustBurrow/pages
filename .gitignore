@@ -242,3 +242,4 @@ $RECYCLE.BIN/
 .com.apple.timemachine.donotpresent
 
 # Directories potentially created on remote AFP share
+build/

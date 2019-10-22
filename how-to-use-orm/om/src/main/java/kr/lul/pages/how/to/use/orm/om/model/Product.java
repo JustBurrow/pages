@@ -1,5 +1,7 @@
 package kr.lul.pages.how.to.use.orm.om.model;
 
+import java.util.Objects;
+
 /**
  * @author justburrow
  * @since 2019/10/20
@@ -25,6 +27,19 @@ public class Product {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Product)) return false;
+    Product product = (Product) o;
+    return this.id == product.id;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.id);
   }
 
   @Override
