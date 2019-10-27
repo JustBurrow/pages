@@ -1,4 +1,4 @@
-package kr.lul.pages.how.to.use.orm.om.mapper;
+package kr.lul.pages.how.to.use.orm.om.dao;
 
 import kr.lul.pages.how.to.use.orm.om.model.Category;
 import kr.lul.pages.how.to.use.orm.om.model.Product;
@@ -11,7 +11,7 @@ import java.util.List;
  * @since 2019/10/20
  */
 @Mapper
-public interface ProductMapper {
+public interface ProductDao {
   @Insert("INSERT INTO product (name) VALUES (#{name})")
   @Options(useGeneratedKeys = true, keyProperty = "id")
   int create(Product product);

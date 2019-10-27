@@ -4,6 +4,8 @@ spring:
     url: jdbc:mysql://localhost/how-to-use-orm?connectionCollation=utf8mb4_unicode_520_ci&allowPublicKeyRetrieval=true&useSSL=false
     username: local
     password: 'r))jK=HtmT;Xd4bfm*=oLy+m37o6a62.7agvHaNLg*AX4AT8H'
+  thymeleaf:
+    cache: false
 
 mybatis:
   type-aliases-package: kr.lul.pages.how.to.use.orm.om.model

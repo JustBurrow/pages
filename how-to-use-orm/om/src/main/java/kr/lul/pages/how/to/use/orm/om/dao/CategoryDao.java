@@ -1,6 +1,5 @@
-package kr.lul.pages.how.to.use.orm.om.mapper;
+package kr.lul.pages.how.to.use.orm.om.dao;
 
-import kr.lul.pages.how.to.use.orm.om.model.Category;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -10,14 +9,14 @@ import java.util.List;
  * @since 2019/10/20
  */
 @Mapper
-public interface CategoryMapper {
+public interface CategoryDao {
   @Insert("INSERT INTO category(name) VALUES (#{name})")
   @Options(useGeneratedKeys = true, keyProperty = "id")
-  int create(Category category);
+  int create(kr.lul.pages.how.to.use.orm.om.model.Category category);
 
   @Select("SELECT * FROM category WHERE id = #{id}")
-  Category read(@Param("id") long id);
+  kr.lul.pages.how.to.use.orm.om.model.Category read(@Param("id") long id);
 
   @Select("SELECT * FROM category")
-  List<Category> list();
+  List<kr.lul.pages.how.to.use.orm.om.model.Category> list();
 }
