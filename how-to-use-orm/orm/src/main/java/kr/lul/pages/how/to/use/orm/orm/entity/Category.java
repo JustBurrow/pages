@@ -1,7 +1,11 @@
 package kr.lul.pages.how.to.use.orm.orm.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import static java.util.Collections.unmodifiableList;
 
 /**
  * @author justburrow
@@ -16,6 +20,19 @@ public class Category {
   private long id;
   @Column(name = "name", nullable = false)
   private String name;
+  @ManyToMany
+  @JoinTable(name = "rel_category_product",
+      joinColumns = @JoinColumn(name = "category",
+          nullable = false,
+          updatable = false,
+          foreignKey = @ForeignKey(name = "FK_CATEGORY_PRODUCT_PK_CATEGORY"),
+          referencedColumnName = "id"),
+      inverseJoinColumns = @JoinColumn(name = "product",
+          nullable = false,
+          updatable = false,
+          foreignKey = @ForeignKey(name = "FK_CATEGORY_PRODUCT_PK_PRODUCT"),
+          referencedColumnName = "id"))
+  private List<Product> products = new ArrayList<>();
 
   public Category() {
   }
@@ -34,6 +51,10 @@ public class Category {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public List<Product> getProducts() {
+    return unmodifiableList(this.products);
   }
 
   @Override

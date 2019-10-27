@@ -6,11 +6,12 @@ spring:
       username: local
       password: 'r))jK=HtmT;Xd4bfm*=oLy+m37o6a62.7agvHaNLg*AX4AT8H'
   jpa:
-    open-in-view: false
     generate-ddl: false
     database: mysql
     hibernate:
       ddl-auto: validate
+  thymeleaf:
+    cache: false
 
 logging:
   pattern:

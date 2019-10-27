@@ -1,6 +1,7 @@
 package kr.lul.pages.how.to.use.orm.orm.entity;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -16,6 +17,19 @@ public class Product {
   private long id;
   @Column(name = "name", nullable = false)
   private String name;
+  @ManyToMany
+  @JoinTable(name = "rel_category_product",
+      joinColumns = @JoinColumn(name = "product",
+          nullable = false,
+          updatable = false,
+          foreignKey = @ForeignKey(name = "FK_CATEGORY_PRODUCT_PK_PRODUCT"),
+          referencedColumnName = "id"),
+      inverseJoinColumns = @JoinColumn(name = "category",
+          nullable = false,
+          updatable = false,
+          foreignKey = @ForeignKey(name = "FK_CATEGORY_PRODUCT_PK_CATEGORY"),
+          referencedColumnName = "id"))
+  private List<Category> categories;
 
   public Product() {
   }

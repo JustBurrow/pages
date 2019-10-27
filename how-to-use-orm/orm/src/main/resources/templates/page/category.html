@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:lang="${#locale}">
+<head>
+    <meta name="author" content="justburrow" th:remove="all"/>
+    <meta name="since" content="2019/10/27 22:45" th:remove="all"/>
+    <meta charset="UTF-8"/>
+    <!--/*@thymesVar id="category" type="kr.lul.pages.how.to.use.orm.orm.entity.Category"*/-->
+    <title th:text="${category.name}">category</title>
+</head>
+<body>
+<main>
+    <!--/*@thymesVar id="category" type="kr.lul.pages.how.to.use.orm.orm.entity.Category"*/-->
+    <h1 th:text="${category.name}">category</h1>
+    <section>
+        <h2>Products</h2>
+        <table>
+            <caption>Products</caption>
+            <thead>
+            <tr>
+                <th><span>ID</span></th>
+                <th><span>NAME</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${category.products}">
+                <td>
+                    <span th:text="${product.id}">id</span>
+                </td>
+                <td>
+                    <span th:text="${product.name}">name</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+</body>
+</html>
