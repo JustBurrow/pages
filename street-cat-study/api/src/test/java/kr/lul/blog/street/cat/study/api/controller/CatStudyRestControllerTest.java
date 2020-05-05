@@ -1,14 +1,14 @@
 package kr.lul.blog.street.cat.study.api.controller;
 
 import kr.lul.blog.street.cat.study.api.ApiTestConfiguration;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.UUID;
@@ -27,17 +27,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author justburrow
  * @since 2020/05/05
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @WebMvcTest(CatStudyRestController.class)
 @ContextConfiguration(classes = ApiTestConfiguration.class)
-public class CatStudyRestControllerTest {
+class CatStudyRestControllerTest {
   protected static final Logger log = getLogger(CatStudyRestControllerTest.class);
 
   @Autowired
   private MockMvc mock;
 
   @Test
-  public void test_add() throws Exception {
+  void test_add() throws Exception {
     // GIVEN
     UUID chipId = randomUUID();
     UUID deviceId = randomUUID();
