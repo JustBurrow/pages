@@ -23,9 +23,16 @@ public class CatService {
   private CatRepository catRepository;
 
   public Cat add(AddCatParams params) {
-    Cat cat = new Cat(params.getChipId(), params.getDeviceId());
-    cat = this.catRepository.save(cat);
+    if (log.isDebugEnabled())
+      log.debug("#add params={}", params);
 
+    Cat cat = this.catRepository.findByChipIdAndDeviceId(params.getChipId(), params.getDeviceId());
+    if (null == cat) {
+      cat = this.catRepository.save(new Cat(params.getChipId(), params.getDeviceId()));
+    }
+
+    if (log.isDebugEnabled())
+      log.debug("#add return : {}", cat);
     return cat;
   }
 }

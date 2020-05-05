@@ -15,6 +15,14 @@ public class AddRequest {
   @NotNull
   private UUID deviceId;
 
+  public AddRequest() {
+  }
+
+  public AddRequest(@NotNull UUID chipId, @NotNull UUID deviceId) {
+    this.chipId = chipId;
+    this.deviceId = deviceId;
+  }
+
   public UUID getChipId() {
     return this.chipId;
   }

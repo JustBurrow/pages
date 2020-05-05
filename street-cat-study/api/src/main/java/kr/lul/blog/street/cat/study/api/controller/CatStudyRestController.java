@@ -26,6 +26,14 @@ public class CatStudyRestController {
   @Autowired
   private CatService catService;
 
+  /**
+   * 인식표 정보를 받아 등록하고 등록된 정보를 반환한다.
+   * 이미 등록된 정보인 경우에는 기존의 정보를 반환한다.
+   *
+   * @param request 인식표 정보.
+   *
+   * @return 등록된 인식표(고양이) 정보.
+   */
   @RequestMapping("/api/add")
   @ResponseBody
   public AddResponse add(@RequestBody AddRequest request) {
