@@ -1,7 +1,6 @@
 package kr.lul.blog.street.cat.study.api.controller;
 
 import kr.lul.blog.street.cat.study.api.ApiTestConfiguration;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +29,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(CatStudyRestController.class)
 @ContextConfiguration(classes = ApiTestConfiguration.class)
-class CatStudyRestControllerTest {
-  protected static final Logger log = getLogger(CatStudyRestControllerTest.class);
+class CatStudyRestControllerMvcTest {
+  protected static final Logger log = getLogger(CatStudyRestControllerMvcTest.class);
 
   @Autowired
   private MockMvc mock;
 
-  @Test
+  //@Test
   void test_add() throws Exception {
     // GIVEN
     UUID chipId = randomUUID();
