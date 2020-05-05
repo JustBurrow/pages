@@ -45,6 +45,15 @@ subprojects {
     }
   }
 
+  dependencyManagement {
+    imports {
+      mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+    }
+
+    dependencies {
+    }
+  }
+
   dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
@@ -53,7 +62,7 @@ subprojects {
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
       exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-//    testImplementation('org.junit:junit')
+    testImplementation('junit:junit')
     testImplementation 'com.h2database:h2'
   }
 
