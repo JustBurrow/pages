@@ -1,7 +1,6 @@
 package kr.lul.blog.street.cat.study.api.service;
 
 import kr.lul.blog.street.cat.study.api.ApiTestConfiguration;
-import kr.lul.blog.street.cat.study.api.service.params.AddCatParams;
 import kr.lul.blog.street.cat.study.common.data.Cat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,6 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import static java.util.UUID.randomUUID;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,18 +42,19 @@ class CatServiceTest {
   @Test
   void test_add() {
     // GIVEN
-    AddCatParams params = new AddCatParams(randomUUID(), randomUUID());
-    log.info("GIVEN - params={}", params);
+    UUID chipId = randomUUID();
+    UUID deviceId = randomUUID();
+    log.info("GIVEN - chipId={}, deviceId={}", chipId, deviceId);
 
     // WHEN
-    Cat cat = this.service.add(params);
+    Cat cat = this.service.add(chipId, deviceId);
     log.info("WHEN - cat={}", cat);
 
     // THEN
     assertThat(cat)
         .isNotNull()
         .extracting(Cat::getChipId, Cat::getDeviceId, Cat::isDeleted, Cat::getDeletedAt)
-        .containsSequence(params.getChipId(), params.getDeviceId(), false, null);
+        .containsSequence(chipId, deviceId, false, null);
     assertThat(cat.getId())
         .isPositive();
     assertThat(cat.getCreatedAt())
@@ -65,24 +66,23 @@ class CatServiceTest {
   @Test
   void test_add_twice() {
     // GIVEN
-    AddCatParams params = new AddCatParams(randomUUID(), randomUUID());
-    log.info("GIVEN - params={}", params);
-    Cat cat1 = this.service.add(params);
+    UUID chipId = randomUUID();
+    UUID deviceId = randomUUID();
+    log.info("GIVEN - chipId={}, deviceId={}", chipId, deviceId);
+    Cat cat1 = this.service.add(chipId, deviceId);
     log.info("GIVEN - cat1={}", cat1);
 
     // WHEN
-    Cat cat2 = this.service.add(params);
+    Cat cat2 = this.service.add(chipId, deviceId);
     log.info("WHEN - cat2={}", cat2);
 
     // THEN
     assertThat(cat2)
         .isNotNull()
         .extracting(Cat::getId, Cat::getChipId, Cat::getDeviceId,
-            Cat::getCreatedAt, Cat::getUpdatedAt,
-            Cat::isDeleted, Cat::getDeletedAt)
-        .containsSequence(cat1.getId(), params.getChipId(), params.getDeviceId(),
-            cat1.getCreatedAt(), cat1.getUpdatedAt(),
-            false, null);
+            Cat::getCreatedAt, Cat::getUpdatedAt, Cat::isDeleted, Cat::getDeletedAt)
+        .containsSequence(cat1.getId(), chipId, deviceId,
+            cat1.getCreatedAt(), cat1.getUpdatedAt(), false, null);
 
   }
 }
