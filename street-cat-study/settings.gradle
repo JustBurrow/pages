@@ -3,4 +3,5 @@ rootProject.name = 'street-cat-study'
 include 'common',
     'api',
     'batch-daily',
-    'batch-weekly'
+    'batch-weekly',
+    'runner-api'
