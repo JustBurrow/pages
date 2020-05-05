@@ -54,3 +54,6 @@ Temporary Items
 temp
 **/config/*
 !**/config/sample-*
+
+**/.idea
+**/.gradle
