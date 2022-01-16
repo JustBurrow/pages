@@ -17,7 +17,6 @@ fun someLogic() {
     // 기타 기능.
 }
 
-
 const val VERSION_CORE_PATTERN = "(\\d+)\\.(\\d+)\\.(\\d+)"
 const val PRE_RELEASE_PATTERN = "[\\da-zA-Z-]+(\\.[\\da-zA-Z-]+)*"
 const val BUILD_PATTERN = "[\\da-zA-Z-]+(\\.[\\da-zA-Z-]+)*"
