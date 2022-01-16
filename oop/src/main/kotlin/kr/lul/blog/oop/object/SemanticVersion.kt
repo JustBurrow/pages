@@ -43,27 +43,25 @@ class SemanticVersion : Comparable<SemanticVersion> {
 
     var preRelease: String?
         private set(value) {
-            field = if (null == value) {
-                value
-            } else {
-                if (!value.matches(PRE_RELEASE_REGEX)) {
-                    throw IllegalArgumentException("illegal pre-release : preRelease=$value")
-                } else {
+            field = when {
+                null == value ->
                     value
-                }
+                !value.matches(PRE_RELEASE_REGEX) ->
+                    throw IllegalArgumentException("illegal pre-release : preRelease=$value")
+                else ->
+                    value
             }
         }
 
     var build: String?
         private set(value) {
-            field = if (null == value) {
-                value
-            } else {
-                if (!value.matches(BUILD_REGEX)) {
-                    throw IllegalArgumentException("illegal build : build=$value")
-                } else {
+            field = when {
+                null == value ->
                     value
-                }
+                !value.matches(BUILD_REGEX) ->
+                    throw IllegalArgumentException("illegal build : build=$value")
+                else ->
+                    value
             }
         }
 
@@ -87,7 +85,6 @@ class SemanticVersion : Comparable<SemanticVersion> {
         this.preRelease = preRelease
         this.build = build
     }
-
 
     override fun compareTo(other: SemanticVersion): Int {
         var rv = major.compareTo(other.major)
