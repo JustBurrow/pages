@@ -10,6 +10,6 @@ data class SemanticVersion(
         val major: Int,
         val minor: Int,
         val patch: Int,
-        val preRelease: String?,
-        val build: String?
+        val preRelease: String? = null,
+        val build: String? = null
 )
